@@ -16,6 +16,11 @@ def convert(file_path):
 x = 745
 y = 585
 
+# DELAY BETWEEN ACTIONS (SECONDS)
+action = 0.1
+# DELAY IN TYPING (SECONDS)
+typing = 0.1
+
 # TRUE IF YOU WANT TO USE LONG WORDS, FALSE IF YOU WANT TO USE SHORT WORDS
 long = True
 
@@ -30,20 +35,20 @@ words = sorted(convert(dictionary), key=len, reverse=long)
 while True:
     if keyboard.is_pressed('insert'):
         pyautogui.moveTo(x, y)
-        time.sleep(10)
+        time.sleep(delay)
         pyautogui.doubleClick()
-        time.sleep(10)
+        time.sleep(delay)
         pyautogui.hotkey('ctrl', 'c')
-        time.sleep(10)
+        time.sleep(delay)
         text = pyperclip.paste()
         print('Locating...')
         for word in words:
             if text in word.lower() and True:
                 pyautogui.moveTo(x, 1000)
-                time.sleep(10)
+                time.sleep(delay)
                 pyautogui.click()
-                time.sleep(10)
-                pyautogui.write(word, interval=0.1)
+                time.sleep(delay)
+                pyautogui.write(word, interval=typing)
                 pyautogui.keyDown('enter')
                 pyautogui.keyUp('enter')
                 words.remove(word)
